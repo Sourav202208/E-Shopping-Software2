@@ -6,6 +6,7 @@ namespace HealthDemo.WebApp.Controllers
     {
         public IActionResult Index()
         {
+             string message = string.Empty;
             return View();
         }
     }
