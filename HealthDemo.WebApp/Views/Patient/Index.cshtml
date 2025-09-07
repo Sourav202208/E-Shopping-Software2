@@ -1,0 +1,227 @@
+﻿
+@model IEnumerable<HealthDemo.Model.Model.PatientDataAddressVM>;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+
+    .h1, h1 {
+        margin-left: 380px;
+        font-size: calc(1.375rem + 1.5vw);
+    }
+
+
+    .table {
+        --bs-table-bg: transparent;
+        --bs-table-accent-bg: transparent;
+        --bs-table-striped-color: #212529;
+        --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
+        --bs-table-active-color: #212529;
+        --bs-table-active-bg: rgba(0, 0, 0, 0.1);
+        --bs-table-hover-color: #212529;
+        --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+        vertical-align: top;
+        border-color: #dee2e6;
+        margin-left: -125px;
+    }
+
+    .btn-primary {
+        color: #fff;
+        background-color: #0d6efd;
+        border-color: #0d6efd;
+        margin-left: -55px;
+        width: 100px;
+    }
+
+
+
+    .container {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: -34px;
+    }
+
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <h1 class="text-center text-primary">Patient Details</h1>
+            <button class="btn btn-primary mb-2" id="btnAdd" data-toggle="modal" data-target="#PatientMadal">AddPatient</button>
+            <table class="table table-bordered ">
+                <tr class="text-center">
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Contact</th>
+                    <th>Gender</th>
+                    <th>Emailaddress</th>
+                    <th>Medical Condition</th>
+                    <th>Symptoms</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Pincode</th>
+                    <th>Note</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr class="text-center">
+                        <th>@item.Id</th>
+                        <th>@item.Name</th>
+                        <th>@item.Age</th>
+                        <th>@item.Contact</th>
+                        <th>@item.Gender</th>
+                        <th>@item.Email</th>
+                        <th>@item.MedicalConditions</th>
+                        <th>@item.Symptoms</th>
+                        <th>@item.Address</th>
+                        <th>@item.City</th>
+                        <th>@item.Pincode</th>
+                        <th>@item.Note</th>
+                        <th>
+                            <a class=" btn btn-warning" asp-controller="Patient" asp-action="Edit" asp-route-Id="@item.Id">Edit</a>
+                        </th>
+                        <th>
+                            <a class=" btn btn-danger" asp-controller="Patient" asp-action="Delete" asp-route-Id="@item.Id">Delete</a>
+                        </th>
+                        @TempData["Msg"]
+                        @TempData["Msg1"]
+                        @TempData["Msg2"]
+                    </tr>
+                }
+            </table>
+    
+            @*<--Popup for add patient-->*@
+
+            <div class="madal fade modal" id="PatientMadal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="text-info modal title">Add Patient</h1>
+                            <button class="close text-danger" data-bs-dismiss="modal">&times;</button>
+                        </div>                        
+                        <div class="modal-body">
+                             <form method="post">                                                      
+                                    <input type="hidden" id="Id" /> 
+                                    <input type="hidden" id="AddressId" />
+                                    <div class="form-group">
+                                        <label>NAME</label>
+                                        <input id="Name" type="text" class="form-control" placeholder="Enter Name" />
+                                        <span id="Name" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>AGE</label>
+                                        <input id="Age" type="number" class="form-control" placeholder="Enter Age" />
+                                        <span id="Age" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>CONTACT</label>
+                                        <input id="Contact" type="text" class="form-control" placeholder="Enter Contact" />
+                                        <span id="Contact" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="margin-top: 3px;">EMAIL</label>
+                                        <input id="Email" type="text" class="form-control" placeholder="Enter Email" />
+                                        <span id="Email" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label id="Gender">Gender:</label>
+                                        <input type="radio" id="male" name="Gender" value="male">
+                                        <label for="male">Male</label>
+                                        <input type="radio" id="female" name="Gender" value="female">
+                                        <label for="female">Female</label>
+                                        <span  id="Gender" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>MEDICAL CONDITIONS</label><br />
+                                        <input type="checkbox" id="Diabetes" name="MedicalConditions" value="Diabetes" />Diabetes
+                                        <input type="checkbox" id="Hypertension"  name="MedicalConditions" value="Hypertension" />Hypertension
+                                        <input type="checkbox" id="Asthma"  name="MedicalConditions" value="Asthma" />Asthma
+                                    </div>
+                                    <div id="Symptoms" class="dropdown-check-list" tabindex="100">
+                                        <span class="anchor">Select Symptoms</span>
+                                        <ul class="items">
+                                        <li><input type="checkbox" id="Cold" name="Symptoms" value="1" />Cold </li>
+                                        <li><input type="checkbox" id="Fever" name="Symptoms" value="2" />Fever</li>
+                                        <li><input type="checkbox" id="Headache" name="Symptoms" value="3" />Headache </li>
+                                        <li><input type="checkbox" id="Bp High" name="Symptoms" value="4" />Bp High </li>
+                                        <li><input type="checkbox" id="Bp Low" name="Symptoms" value="5" />Bp Low </li>
+                                        </ul>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>ADDRESS</label>
+                                        <input id="Address" type="text" class="form-control" placeholder="Enter Address" />
+                                        <span id="Address" class="text-danger"></span>
+                                    </div>
+                                    <div>
+                                        <label for="City">City:</label>
+                                        <select class="form-control" id="City">
+                                            <option>--Select City--</option>
+                                            <option value="Noida">Noida</option>
+                                            <option value="Aligarh">Aligarh</option>
+                                            <option value="Delhi">Delhi</option>
+                                            <option value="Mumbai">Mumbai</option>
+                                            <option value="Pune">Pune</option>
+                                            <option value="Ghaziyabad">Ghaziyabad</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>PINCODE</label>
+                                        <input id="Pincode" type="text" class="form-control" placeholder="Enter Pincode" />
+                                        <span id="Pincode" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="margin-top: 3px;">NOTE</label>
+                                        <textarea id="Note" ></textarea>
+                                    </div>                                                                
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" onclick="Add();" id="AddPatient">Save</button>
+                            <button class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+"
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<--Multiselect Dropdown Js-->*@
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        debugger
+        $('#Symptoms').multiselect
+            ({
+                includeSelectAllOption: true
+            });
+    });
+    var checkList = document.getElementById('Symptoms');
+    checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
+        if (checkList.classList.contains('visible'))
+            checkList.classList.remove('visible');
+        else
+            checkList.classList.add('visible');
+    }
+</script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/popup.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+
+
+
+

@@ -1,0 +1,40 @@
+2023-07-24 17:02:08.303 +05:30 [ERR] Failed executing DbCommand (684ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [PatientAddresses] (
+    [AddressId] int NOT NULL IDENTITY,
+    [Address] nvarchar(max) NULL,
+    [City] nvarchar(max) NULL,
+    [Pincode] int NOT NULL,
+    CONSTRAINT [PK_PatientAddresses] PRIMARY KEY ([AddressId])
+);
+2023-07-24 17:04:46.749 +05:30 [ERR] Failed executing DbCommand (37ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [PatientAddresses] (
+    [AddressId] int NOT NULL IDENTITY,
+    [Address] nvarchar(max) NULL,
+    [City] nvarchar(max) NULL,
+    [Pincode] int NOT NULL,
+    CONSTRAINT [PK_PatientAddresses] PRIMARY KEY ([AddressId])
+);
+2023-07-24 17:07:59.175 +05:30 [ERR] Failed executing DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [PatientAddresses] (
+    [AddressId] int NOT NULL IDENTITY,
+    [Address] nvarchar(max) NULL,
+    [City] nvarchar(max) NULL,
+    [Pincode] int NOT NULL,
+    CONSTRAINT [PK_PatientAddresses] PRIMARY KEY ([AddressId])
+);
+2023-07-24 17:10:24.625 +05:30 [ERR] Failed executing DbCommand (129ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [PatientAddresses] (
+    [AddressId] int NOT NULL IDENTITY,
+    [Address] nvarchar(max) NULL,
+    [City] nvarchar(max) NULL,
+    [Pincode] int NOT NULL,
+    CONSTRAINT [PK_PatientAddresses] PRIMARY KEY ([AddressId])
+);
+2023-07-24 17:15:13.988 +05:30 [ERR] Failed executing DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [PatientAddresses] (
+    [AddressId] int NOT NULL IDENTITY,
+    [Address] nvarchar(max) NULL,
+    [City] nvarchar(max) NULL,
+    [Pincode] int NOT NULL,
+    CONSTRAINT [PK_PatientAddresses] PRIMARY KEY ([AddressId])
+);

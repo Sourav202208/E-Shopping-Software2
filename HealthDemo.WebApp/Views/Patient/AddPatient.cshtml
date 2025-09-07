@@ -1,0 +1,225 @@
+﻿@model HealthDemo.Model.Model.PatientDataAddressVM
+@{
+    ViewData["Title"] = "AddPatient";
+}
+<style>
+
+    element.style {
+    }
+
+    .btn-group-sm > .btn, .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: .875rem;
+        line-height: 1.5;
+        border-radius: 0.2rem;
+        margin-top: -41px;
+    }
+
+    .card-body {
+        -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        padding: 1.25rem;
+        margin-top: -16px;
+    }
+
+    .offset-3 {
+        margin-left: 25%;
+        margin-top: 35px;
+    }
+
+    .page-wrapper .page-content {
+        display: inline-block;
+        width: 100%;
+        padding-left: 0px;
+        padding-top: 20px;
+        margin-top: -32px;
+    }
+
+    .container {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: -60px;
+    }
+
+    element.style {
+    }
+
+    .footer[b-7p1oes01wj] {
+        position: absolute;
+        bottom: -375px;
+        width: 100%;
+        white-space: nowrap;
+        line-height: 60px;
+    }
+
+    .dropdown-check-list {
+        display: inline-block;
+    }
+
+        .dropdown-check-list .anchor {
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+            padding: 5px 50px 5px 10px;
+            border: 1px solid #ccc;
+        }
+
+            .dropdown-check-list .anchor:after {
+                position: absolute;
+                content: "";
+                border-left: 2px solid black;
+                border-top: 2px solid black;
+                padding: 5px;
+                right: 10px;
+                top: 20%;
+                -moz-transform: rotate(-135deg);
+                -ms-transform: rotate(-135deg);
+                -o-transform: rotate(-135deg);
+                -webkit-transform: rotate(-135deg);
+                transform: rotate(-135deg);
+            }
+
+            .dropdown-check-list .anchor:active:after {
+                right: 8px;
+                top: 21%;
+            }
+
+        .dropdown-check-list ul.items {
+            padding: 2px;
+            display: none;
+            margin: 0;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+            .dropdown-check-list ul.items li {
+                list-style: none;
+            }
+
+        .dropdown-check-list.visible .anchor {
+            color: #0094ff;
+        }
+
+        .dropdown-check-list.visible .items {
+            display: block;
+        }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card">
+                <form method="post" method="post" asp-action="AddPatient" asp-controller="Patient">
+                    <div class="card-header">
+                        <h1 class="text-center text-primary  p-0">Add Patient</h1>
+                    </div>
+                    <div class="card-body">
+                        @Html.HiddenFor(m=> m.Id)
+                        @Html.HiddenFor(m=> m.AddressId)
+                        <div class="form-group">
+                            <label>NAME</label>
+                            <input asp-for="Name" type="text" class="form-control" placeholder="Enter Name" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>AGE</label>
+                            <input asp-for="Age" type="number" class="form-control" placeholder="Enter Age" />
+                            <span asp-validation-for="Age" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>CONTACT</label>
+                            <input asp-for="Contact" type="text" class="form-control" placeholder="Enter Contact" />
+                            <span asp-validation-for="Contact" class="text-danger"></span>
+                        </div>
+                        <div class="form-group ">
+                            <label style="margin-top: 3px;">EMAIL</label>
+                            <input asp-for="Email" type="text" class="form-control" placeholder="Enter Email" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>GENDER</label>
+                            <input type="radio" name="Gender" value="Male" />Male
+                            <input type="radio" name="Gender" value="Female" />Female
+                            <span asp-validation-for="Gender" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>MEDICAL CONDITIONS</label><br />
+                            <input type="checkbox" name="MedicalConditions" value="Diabetes" />Diabetes
+                            <input type="checkbox" name="MedicalConditions" value="Hypertension" />Hypertension
+                            <input type="checkbox" name="MedicalConditions" value="Asthma" />Asthma
+                        </div>
+                        <div id="Symptoms" class="dropdown-check-list" tabindex="100">
+                            <span class="anchor">Select Symptoms</span>
+                            <ul class="items">
+                                <li><input type="checkbox" name="Symptoms" value="1" />Cold </li>
+                                <li><input type="checkbox" name="Symptoms" value="2" />Fever</li>
+                                <li><input type="checkbox" name="Symptoms" value="3" />Headache </li>
+                                <li><input type="checkbox" name="Symptoms" value="4" />Bp High </li>
+                                <li><input type="checkbox" name="Symptoms" value="5" />Bp Low </li>
+                            </ul>
+                        </div>
+                        <div class="form-group">
+                            <label>ADDRESS</label>
+                            <input asp-for="Address" type="text" class="form-control" placeholder="Enter Address" />
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+                        <div>
+                            <label for="City">City:</label>
+                            <select class="form-control"  asp-for="City">
+                                <option selected disabled>--Select City--</option>
+                                <option value="Noida">Noida</option>
+                                <option value="Aligarh">Aligarh</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Mumbai">Mumbai</option>
+                                <option value="Pune">Pune</option>
+                                <option value="Ghaziyabad">Ghaziyabad</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>PINCODE</label>
+                            <input asp-for="Pincode" type="text" class="form-control" placeholder="Enter Pincode" />
+                            <span asp-validation-for="Pincode" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label style="margin-top: 3px;">NOTE</label>
+                            <textarea asp-for="Note" class=></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-sm btn-outline-success" value="Add" />
+                            <input type="Reset" class="btn btn-sm btn-outline-warning" value="clear" />
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+@*<--Multiselect Dropdown Js-->*@
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        debugger
+        $('#Symptoms').multiselect
+            ({
+                includeSelectAllOption: true
+            });
+    });
+    var checkList = document.getElementById('Symptoms');
+    checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
+        if (checkList.classList.contains('visible'))
+            checkList.classList.remove('visible');
+        else
+            checkList.classList.add('visible');
+    }
+</script>
+
+
