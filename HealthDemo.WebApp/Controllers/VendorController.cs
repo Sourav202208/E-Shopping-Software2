@@ -2,7 +2,7 @@
 
 namespace HealthDemo.WebApp.Controllers
 {
-    public class TestControlle : Controller
+    public class VendorController : Controller
     {
         public IActionResult Index()
         {
